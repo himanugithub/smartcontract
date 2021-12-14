@@ -46,27 +46,27 @@ w3 = Web3(Web3.EthereumTesterProvider())
 # set pre-funded account as sender
 w3.eth.default_account = w3.eth.accounts[0]
 # get bytecode
-  bytecode = compiled_sol['contracts']['Greeter.sol']['Greeter']['evm']['bytecode']['object']
+bytecode = compiled_sol['contracts']['Greeter.sol']['Greeter']['evm']['bytecode']['object']
 
 # get abi
-  abi = json.loads(compiled_sol['contracts']['Greeter.sol']['Greeter']['metadata'])['output']['abi']
+abi = json.loads(compiled_sol['contracts']['Greeter.sol']['Greeter']['metadata'])['output']['abi']
 
-  Greeter = w3.eth.contract(abi=abi, bytecode=bytecode)
+Greeter = w3.eth.contract(abi=abi, bytecode=bytecode)
 
 # Submit the transaction that deploys the contract
-  tx_hash = Greeter.constructor().transact()
+tx_hash = Greeter.constructor().transact()
 
 # Wait for the transaction to be mined, and get the transaction receipt
-  tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
-  greeter = w3.eth.contract(
+greeter = w3.eth.contract(
      address=tx_receipt.contractAddress,
      abi=abi
  )
-  greeter.functions.greet().call()
- 'Hello'
+greeter.functions.greet().call()
+'Hello'
 
-  tx_hash = greeter.functions.setGreeting('Nihao').transact()
-  tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
-  greeter.functions.greet().call()
- 'Nihao'
+tx_hash = greeter.functions.setGreeting('Nihao').transact()
+tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+greeter.functions.greet().call()
+'Nihao'
