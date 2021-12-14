@@ -3,7 +3,7 @@ import json
 from web3 import Web3
 from solc import compile_standard
 
-Solidity source code
+#Solidity source code
 compiled_sol = compile_standard({
      "language": "Solidity",
      "sources": {
