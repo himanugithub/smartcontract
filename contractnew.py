@@ -42,9 +42,9 @@ compiled_sol = compile_standard({
  })
 
 # web3.py instance
-  w3 = Web3(Web3.EthereumTesterProvider())
+w3 = Web3(Web3.EthereumTesterProvider())
 # set pre-funded account as sender
-  w3.eth.default_account = w3.eth.accounts[0]
+w3.eth.default_account = w3.eth.accounts[0]
 # get bytecode
   bytecode = compiled_sol['contracts']['Greeter.sol']['Greeter']['evm']['bytecode']['object']
 
