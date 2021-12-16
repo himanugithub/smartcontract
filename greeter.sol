@@ -1,17 +1,24 @@
-pragma solidity ^0.8.0;
+pragma solidity 0.5.1;
 
 contract Greeter {
- string public greeting;
+    uint count;
+    constructor() public {
+    count=0
+    }
+    event Increment(uint value);
+    event Decrement(uint value);
+    function getcount() view public returns(uint) {
+        return count;
+        
+    }
 
- constructor() public {
-  greeting = 'Hello';
- }
+    function increment() public{
+        count+=1;
+        emit Increment(count);
+    }
 
- function setGreeting(string memory _greeting) public {
-  greeting = _greeting;
- }
-
- function greet() view public returns (string memory) {
-  return greeting;
- }
+    function decrement() public{
+        count-=1;
+        emit Decrement(count);
+    }
 }
